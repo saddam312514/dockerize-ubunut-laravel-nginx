@@ -1,0 +1,98 @@
+
+1. composer remove consoletvs/charts
+2. composer require "consoletvs/charts:5.*"
+
+Laravel PackageManifest.php: Undefined index: name
+1. vi vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php
+add two line
+
+$installed = json_decode($this->files->get($path), true);
+$packages = $installed['packages'] ?? $installed;
+
+
+mysql secure password error
+
+# Completely remove any previous config
+sudo apt remove --purge mysql*
+sudo apt autoremove
+sudo find / -iname mysql
+
+# install the server
+sudo apt update
+sudo apt install mysql-server
+# run the wizard
+sudo mysql_secure_installation
+sudo mysql
+mysql> use mysql;
+mysql> SELECT user,authentication_string,plugin,host FROM mysql.user;
+
+# enable password login
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password';
+mysql> FLUSH PRIVILEGES;
+mysql> exit;
+
+# should be able to login with password now
+mysql -u root -p
+Enter password:
+
+mysql>
+
+
+Composer install error - requires ext_curl when it's actually enabled
+
+sudo apt-get install php7.0-curl
+For those who uses php7.1
+
+sudo apt-get install php7.1-curl
+For those who use php7.2
+
+sudo apt-get install php7.2-curl
+For those who use php7.3
+
+sudo apt-get install php7.3-curl
+For those who use php7.4
+
+
+firewall setting 
+sudo ufw app list
+sudo ufw allow 'Apache'
+
+
+Database Export import
+ mysqldump -u root -p laravel > laravel.sql
+mysql -u root -p laravel < laravel.sql
+
+
+
+----------------Apache virtual Host--------------
+
+
+sudo apt install apache2
+sudo systemctl start apache2
+sudo systemctl enable apache2
+sudo apt install php libapache2-mod-php php-mbstring php-cli php-bcmath php-json php-xml php-zip php-pdo php-common php-tokenizer php-mysql
+sudo apt install mariadb-server
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer\
+sudo chmod +x /usr/local/bin/composer
+sudo chown -R www-data:www-data /var/www/html/laravelapp
+sudo chmod -R 775 /var/www/html/laravelapp/storage
+sudo vim /etc/apache2/sites-available/laravel.conf
+<VirtualHost *:80>
+ServerName example.com
+ServerAdmin admin@example.com
+DocumentRoot /var/www/html/laravelapp/public
+<Directory /var/www/html/laravelapp>
+AllowOverride All
+</Directory>
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+sudo a2ensite laravel.conf
+sudo a2enmod rewrite
+sudo apache2ctl configtest
+sudo systemctl restart apache2
+
+----------User and password-----------
+admin@mail.com
+codeastro.com
