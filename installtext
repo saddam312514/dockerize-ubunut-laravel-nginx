@@ -10,4 +10,7 @@ if error container login
 chown -R www-data:www-data /var/www/html/laravelapp
 sudo chmod -R 775 /var/www/html/laravelapp/storage
 
+username and password
+admin@mail.com
+
 
