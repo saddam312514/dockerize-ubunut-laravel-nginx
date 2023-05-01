@@ -1,0 +1,13 @@
+
+1. run composer install or  inphp composer.pharstall
+run php artisan key:generate
+run php artisan migrate
+run php artisan db:seed to run seeders, if any.
+run php artisan serve
+
+if error container login
+
+chown -R www-data:www-data /var/www/html/laravelapp
+sudo chmod -R 775 /var/www/html/laravelapp/storage
+
+
